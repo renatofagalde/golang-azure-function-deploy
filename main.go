@@ -24,6 +24,7 @@ func quotesHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	fmt.Println("azure function 01")
 	listenAddr := ":8080"
 	if val, ok := os.LookupEnv("FUNCTIONS_CUSTOMHANDLER_PORT"); ok {
 		listenAddr = ":" + val
