@@ -9,10 +9,10 @@ import (
 )
 
 var quotes = []string{
-	"Talk is cheap. Show me the code.",
-	"First, solve the problem. Then, write the code.",
-	"Experience is the name everyone gives to their mistakes.",
-	"Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+	"Eu não tenho ídolos. Tenho admiração por trabalho, dedicação e competência.",
+	"O importante é ganhar. Tudo e sempre. Essa história que o importante é competir não passa de demagogia.",
+	"Sem sacrifício, não há vitória.",
+	"Seu amor me fortalece, seu ódio me motiva.",
 }
 
 func quotesHandler(w http.ResponseWriter, r *http.Request) {
