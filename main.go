@@ -27,6 +27,8 @@ func main() {
 	listenAddr := ":8080"
 	if val, ok := os.LookupEnv("FUNCTIONS_CUSTOMHANDLER_PORT"); ok {
 		listenAddr = ":" + val
+
+		fmt.Sprintln("Variavel da porta: %s", listenAddr)
 	}
 	http.HandleFunc("/api/frases", quotesHandler)
 	log.Printf("About to listen on %s. Go to https://127.0.0.1%s/", listenAddr, listenAddr)
