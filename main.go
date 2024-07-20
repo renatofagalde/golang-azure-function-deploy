@@ -19,8 +19,10 @@ func quotesHandler(w http.ResponseWriter, r *http.Request) {
 	// Get a random quote
 	message := quotes[rand.Intn(len(quotes))]
 
+	response := fmt.Sprintf("exemplo gitactions -> %s", message)
+
 	// Write the response
-	fmt.Fprint(w, message)
+	fmt.Fprint(w, response)
 }
 
 func main() {
