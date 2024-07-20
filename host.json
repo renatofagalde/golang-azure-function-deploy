@@ -15,5 +15,12 @@
       "arguments": []
     },
     "enableForwardingHttpRequest": true
+  },
+  "httpWorker": {
+    "description": {
+      "defaultExecutablePath": "bootstrap",
+      "arguments": [],
+      "defaultWorkerPath": ""
+    }
   }
 }
