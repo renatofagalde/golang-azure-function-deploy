@@ -23,6 +23,13 @@ func quotesHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Write the response
 	fmt.Fprint(w, response)
+	log.Printf("Response sent: %s", response)
+}
+
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	log.Println("Health check")
+	w.WriteHeader(http.StatusOK)
+	fmt.Fprintf(w, "OK")
 }
 
 func main() {
@@ -30,10 +37,15 @@ func main() {
 	listenAddr := ":8080"
 	if val, ok := os.LookupEnv("FUNCTIONS_CUSTOMHANDLER_PORT"); ok {
 		listenAddr = ":" + val
-
-		fmt.Sprintln("Variavel da porta: %s", listenAddr)
+		log.Printf("Port from environment variable: %s", listenAddr)
+	} else {
+		log.Println("Using default port: 8080")
 	}
 	http.HandleFunc("/api/frases", quotesHandler)
-	log.Printf("About to listen on %s. Go to https://127.0.0.1%s/", listenAddr, listenAddr)
-	log.Fatal(http.ListenAndServe(listenAddr, nil))
+	http.HandleFunc("/health", healthHandler)
+	log.Printf("About to listen on %s. Go to http://127.0.0.1%s/", listenAddr, listenAddr)
+	err := http.ListenAndServe(listenAddr, nil)
+	if err != nil {
+		log.Fatalf("Server failed to start: %v", err)
+	}
 }
