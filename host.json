@@ -8,14 +8,6 @@
       }
     }
   },
-  "customHandler": {
-    "description": {
-      "defaultExecutablePath": "bootstrap",
-      "workingDirectory": "",
-      "arguments": []
-    },
-    "enableForwardingHttpRequest": true
-  },
   "httpWorker": {
     "description": {
       "defaultExecutablePath": "bootstrap",
