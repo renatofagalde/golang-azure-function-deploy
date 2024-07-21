@@ -14,10 +14,5 @@
       "arguments": [],
       "defaultWorkerPath": ""
     }
-  },
-  "http": {
-    "routePrefix": "",
-    "maxOutstandingRequests": 200,
-    "maxConcurrentRequests": 100
-  },
+  }
 }
