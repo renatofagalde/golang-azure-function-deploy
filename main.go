@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"net/http"
 	"os"
+	"time"
 )
 
 var quotes = []string{
@@ -13,6 +14,20 @@ var quotes = []string{
 	"O importante é ganhar. Tudo e sempre. Essa história que o importante é competir não passa de demagogia.",
 	"Sem sacrifício, não há vitória.",
 	"Seu amor me fortalece, seu ódio me motiva.",
+	"Cade as msg em pt-br?",
+}
+
+func autorizado(w http.ResponseWriter, r *http.Request) {
+	rand.Seed(time.Now().UnixNano())
+	randomNumber := rand.Intn(100)
+
+	if randomNumber%2 == 0 {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprintln(w, "Allowed")
+	} else {
+		w.WriteHeader(http.StatusForbidden)
+		fmt.Fprintln(w, "Forbidden")
+	}
 }
 
 func quotesHandler(w http.ResponseWriter, r *http.Request) {
@@ -42,6 +57,7 @@ func main() {
 		log.Println("Using default port: 8080")
 	}
 	http.HandleFunc("/api/frases", quotesHandler)
+	http.HandleFunc("/api/autorizado", autorizado)
 	http.HandleFunc("/health", healthHandler)
 	log.Printf("About to listen on %s. Go to http://127.0.0.1%s/", listenAddr, listenAddr)
 	err := http.ListenAndServe(listenAddr, nil)
